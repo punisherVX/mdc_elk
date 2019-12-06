@@ -29,8 +29,10 @@ services:
     volumes:
       - ./install/logstash/logstash.yml:/usr/share/logstash/config/logstash.yml:ro
       - ./install/logstash/palo-alto-networks.conf:/usr/share/logstash/pipeline/palo-alto-networks.conf:ro
+      - ./install/logstash/jnpr-snmp.conf:/usr/share/logstash/pipeline/jnpr-snmp.conf:ro
       - ./install/logstash/logstash.log:/var/log/logstash/logstash.log
     ports:
+      - "161:161/udp"       # snmp
       - "5549:5549/udp"     # traps
       - "5550:5550/udp"     # traffic
       - "5551:5551/udp"     # url
